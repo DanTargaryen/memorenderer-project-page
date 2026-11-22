@@ -18,6 +18,11 @@ for (const catalog of document.querySelectorAll('[data-benchmark-carousel]')) {
         });
     }
     strip.addEventListener('scroll', updateControls, { passive: true });
+    strip.addEventListener('play', (event) => {
+        for (const video of strip.querySelectorAll('video')) {
+            if (video !== event.target && !video.paused) video.pause();
+        }
+    }, true);
     new ResizeObserver(updateControls).observe(strip);
     updateControls();
 }
