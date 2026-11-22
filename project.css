@@ -101,7 +101,7 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
 .mr-project .world-rail { min-width: 0; overflow: hidden; }
 .mr-project :is(.world-track, .world-sequence) { display: flex; width: max-content; }
 .mr-project .world-track {
-  animation: world-slide 76s linear infinite;
+  animation: world-slide var(--world-duration, 76s) linear infinite;
   animation-play-state: paused;
   will-change: transform;
 }
@@ -265,47 +265,23 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
   padding: 11px 14px;
 }
-#nb .mr-project .bench-card-title h3, #nb .mr-project .bench-catalog-bar h3 {
+#nb .mr-project .bench-card-title h3, #nb .mr-project .bench-catalog h3 {
   margin: 0; color: var(--ink); font-size: 16px; line-height: 1.3;
 }
-.mr-project .bench-card-title span, .mr-project .bench-thumb span {
+.mr-project .bench-card-title span {
   color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums;
 }
 .mr-project .bench-card video {
   display: block; width: 100%; height: auto; aspect-ratio: 16/9; background: #10251f;
 }
 .mr-project .bench-catalog { min-width: 0; margin-top: 22px; }
-.mr-project .bench-catalog-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px;
+.mr-project .world-gallery.bench-gallery {
+  --world-width: clamp(200px, 24vw, 312px);
+  --world-gap: clamp(8px, .8vw, 12px);
+  --world-duration: 78s;
+  margin-top: 10px;
 }
-.mr-project .bench-controls { display: flex; gap: 6px; }
-.mr-project .bench-controls button {
-  display: grid; place-items: center; width: 34px; height: 34px;
-  padding: 0; border: 1px solid var(--line); border-radius: 7px;
-  background: #fff; color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer;
-}
-.mr-project .bench-controls button:hover:not(:disabled) { background: #f6faf7; border-color: #7aad9d; }
-.mr-project .bench-controls button:disabled { opacity: .4; cursor: default; }
-.mr-project .bench-scroll {
-  overflow-x: auto; padding: 5px 3px 9px; scroll-snap-type: x proximity; scroll-padding-inline: 3px;
-  scrollbar-width: thin; scrollbar-color: #92a99c transparent;
-}
-#nb .mr-project .bench-items {
-  display: flex; gap: 10px; width: max-content; margin: 0; padding: 0; list-style: none;
-}
-.mr-project .bench-items li { width: clamp(108px,14vw,146px); scroll-snap-align: start; }
-.mr-project .bench-thumb {
-  display: block; overflow: hidden; border: 1px solid var(--line); border-radius: 7px;
-  background: #fff;
-}
-.mr-project .bench-thumb:hover { border-color: #7aad9d; }
-.mr-project .bench-thumb video {
-  display: block; width: 100%; height: auto; aspect-ratio: 16/9; background: #10251f;
-}
-.mr-project .bench-thumb span { display: block; padding: 4px 8px; }
-.mr-project .bench-scroll:focus-visible, .mr-project .bench-thumb:focus-within, .mr-project .bench-controls button:focus-visible {
-  outline: 2px solid #256452; outline-offset: 2px;
-}
+.mr-project .bench-gallery .world-track { animation-delay: -3.5s; }
 .mr-project .benchmark-result { margin-top: 26px; }
 .mr-project .metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 15px; }
 .mr-project .metrics div { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 13px 16px; }
@@ -326,6 +302,7 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
   .mr-project .header-inner nav { order: 3; width: 100%; gap: 11px 21px; flex-wrap: wrap; }
   .mr-project .hero { margin-top: 15px; padding: 23px 15px; }
   .mr-project .world-gallery { --world-width: clamp(176px, 46vw, 265px); }
+  .mr-project .world-gallery.bench-gallery { --world-width: clamp(180px, 52vw, 240px); }
   #nb .mr-project h1 { font-size: clamp(31px,8.4vw,49px); }
   .mr-project .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 18px; }
   .mr-project .case-head { flex-wrap: wrap; }

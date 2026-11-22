@@ -1,12 +1,10 @@
-(() => {
-    const gallery = document.querySelector('[data-world-gallery]');
-    if (!gallery) return;
-
+for (const gallery of document.querySelectorAll('[data-world-gallery]')) {
     const toggle = gallery.querySelector('.world-toggle');
     const videos = [...gallery.querySelectorAll('video[data-world-video]')];
     const rows = [...gallery.querySelectorAll('.world-sequence:not(.duplicate)')];
     const phaseBySource = new Map();
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const isBenchmark = gallery.classList.contains('bench-gallery');
     const visible = new Set();
     let paused = false;
     let elapsedBeforeResume = 0;
@@ -28,15 +26,29 @@
         return elapsedBeforeResume + (resumedAt === null ? 0 : (now - resumedAt) / 1000);
     }
 
-    function syncVideo(video) {
-        if (!active() || !visible.has(video)) {
-            video.pause();
-            return;
-        }
+    function loadVideo(video) {
         if (!video.hasAttribute('src')) {
             video.preload = 'metadata';
             video.src = video.dataset.worldVideo;
         }
+    }
+
+    function syncVideo(video) {
+        if (isBenchmark) {
+            const manual = reducedMotion.matches && !video.closest('.duplicate');
+            video.controls = manual;
+            video.setAttribute('aria-hidden', String(!manual));
+            if (manual) {
+                if (visible.has(video) && !document.hidden) loadVideo(video);
+                else video.pause();
+                return;
+            }
+        }
+        if (!active() || !visible.has(video)) {
+            video.pause();
+            return;
+        }
+        loadVideo(video);
         if (!video.paused || video.readyState < HTMLMediaElement.HAVE_METADATA) return;
 
         const duration = video.duration;
@@ -82,4 +94,4 @@
     reducedMotion.addEventListener('change', syncGallery);
     document.addEventListener('visibilitychange', syncGallery);
     syncGallery();
-})();
+}
