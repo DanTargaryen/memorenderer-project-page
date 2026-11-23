@@ -1,0 +1,31 @@
+.mr-project [data-case="fox"] .fox-comparison-options {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+.mr-project [data-case="fox"] .fox-comparison-options label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 650;
+}
+.mr-project [data-case="fox"] .fox-comparison-options select {
+  border: 1px solid #b6cbc1;
+  border-radius: 7px;
+  background: #f5faf7;
+  color: var(--ink);
+  padding: 8px 32px 8px 11px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  max-width: 100%;
+  cursor: pointer;
+}
+.mr-project [data-case="fox"] .fox-comparison-options select:focus-visible {
+  outline: 3px solid #369e86;
+  outline-offset: 3px;
+}
+.mr-project [data-case="fox"] .play-controls {
+  margin-top: 12px;
+}

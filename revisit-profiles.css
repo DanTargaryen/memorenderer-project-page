@@ -1,0 +1,8 @@
+.mr-project .revisit-options { display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:20px; }
+.mr-project .revisit-options label, .mr-project .comparison-variant, .mr-project .comparison-loading { color:var(--muted); font-size:14px; }
+.mr-project .revisit-options label { font-weight:650; }
+.mr-project .revisit-options select { border:1px solid #b6cbc1; border-radius:7px; background:#f5faf7; color:var(--ink); padding:8px 32px 8px 11px; font:inherit; font-size:14px; font-weight:650; max-width:100%; cursor:pointer; }
+.mr-project .revisit-options select:focus-visible { outline:3px solid #369e86; outline-offset:3px; }
+.mr-project .comparison[data-revisit-profiles] .play-controls { margin-top:12px; }
+.mr-project .comparison-variant { margin:10px 0 0; }
+.mr-project .comparison-variant[hidden], .mr-project .comparison-loading[hidden] { display:none; }
