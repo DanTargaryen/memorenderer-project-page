@@ -5,7 +5,6 @@
     const select = article.querySelector('select');
     const video = article.querySelector('video');
     const label = article.querySelector('.pair-labels b:last-child');
-    const setup = article.querySelector('.protocol p');
     const loading = article.querySelector('.comparison-loading');
     const cache = new Map();
     let revision = 0;
@@ -62,7 +61,6 @@
       video.poster = profile.poster;
       video.src = cache.get(select.value)?.url || profile.movie;
       label.textContent = profile.label;
-      setup.textContent = profile.setup;
       snapshots(profile);
       video.setAttribute('aria-label', article.dataset.case + ' synchronized comparison with ' + profile.label);
       loading.textContent = 'Loading comparison…';
