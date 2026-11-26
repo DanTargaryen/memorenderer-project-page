@@ -370,10 +370,47 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
 .mr-project .protocol summary { cursor: pointer; font-weight: 700; }
 #nb .mr-project .protocol p { margin-top: 9px; color: var(--muted); }
 
-.mr-project .film { background: var(--night); color: #f4f7ee; }
-#nb .mr-project .film .section-head p { color: #c7ddcd; }
-.mr-project .film video { width: 100%; aspect-ratio: 16/9; border-radius: 9px; background: #000; }
-.mr-project .download { display: inline-block; margin-top: 14px; color: var(--mint); font-size: 14px; text-underline-offset: 4px; }
+.mr-project .film {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #15161b;
+  color: #f7f3ed;
+}
+.mr-project .film::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -48px;
+  background: url("assets/film-sky-neutral-baselines-farmhouse-20261126-poster.jpg") center 58% / cover no-repeat;
+  filter: blur(48px) saturate(.72);
+  opacity: .55;
+}
+.mr-project .film::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 12% 0%, rgba(93, 114, 143, .22), transparent 58%),
+    radial-gradient(ellipse at 91% 88%, rgba(160, 95, 51, .23), transparent 55%),
+    linear-gradient(115deg, rgba(12, 15, 22, .52), rgba(19, 16, 19, .28) 58%, rgba(17, 13, 14, .38));
+}
+.mr-project .film video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 9px;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(247, 234, 218, .16), 0 16px 48px rgba(0, 0, 0, .38);
+}
+.mr-project .film .download {
+  display: inline-block;
+  margin-top: 14px;
+  color: #ead5bc;
+  font-size: 14px;
+  text-underline-offset: 4px;
+}
+.mr-project .film .download:hover { color: #fff4e5; }
 
 .mr-project .figure { border: 1px solid var(--line); border-radius: 10px; padding: clamp(9px,2.2vw,23px); background: #fff; }
 .mr-project .figure img { width: 100%; margin: 0; height: auto; }
