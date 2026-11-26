@@ -10,8 +10,15 @@
     let frameCallback = null;
 
     function update() {
-      const span = spans.find(([end]) => video.currentTime < end) ?? spans.at(-1);
-      const speed = Number((span[1] * video.playbackRate).toFixed(2));
+      const time = video.currentTime;
+      const nextSpan = spans.findIndex(([end]) => time < end);
+      const index = nextSpan === -1 ? spans.length - 1 : nextSpan;
+      const [end, initialSpeed, finalSpeed = initialSpeed] = spans[index];
+      const start = spans[index - 1]?.[0] ?? 0;
+      const progress = Math.min(1, Math.max(0, (time - start) / (end - start)));
+      const easedProgress = progress * progress * (3 - 2 * progress);
+      const bakedSpeed = initialSpeed + (finalSpeed - initialSpeed) * easedProgress;
+      const speed = Number((bakedSpeed * video.playbackRate).toFixed(2));
       const label = `${speed}×`;
       if (badge.textContent !== label) badge.textContent = label;
       badge.hidden = video.paused || video.ended || speed === 1;
