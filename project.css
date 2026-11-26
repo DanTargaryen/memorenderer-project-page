@@ -290,6 +290,42 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
   margin-inline: auto;
 }
 
+.mr-project .hero-credits {
+  display: grid;
+  gap: 4px;
+  max-width: 46rem;
+  margin: 16px auto 14px;
+}
+
+.mr-project .hero-authors {
+  color: var(--ink-soft);
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 600;
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.mr-project .hero-affiliations,
+.mr-project .hero-author-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.mr-project .hero-authors span,
+.mr-project .hero-affiliations span {
+  display: inline-block;
+  max-width: 100%;
+  margin-inline: 5px;
+}
+
+.mr-project .hero-credits sup {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
+
 :is(#nb, body) .mr-project .intro {
   color: var(--muted);
   margin: 10px auto 0;
