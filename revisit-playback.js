@@ -1,8 +1,8 @@
 (() => {
-    for (const comparison of document.querySelectorAll('.comparison[data-pace]')) {
-        const spans = JSON.parse(comparison.dataset.pace);
-        const video = comparison.querySelector('video');
-        const badge = comparison.querySelector('.playback-rate');
+    for (const panel of document.querySelectorAll('[data-pace]')) {
+        const spans = JSON.parse(panel.dataset.pace);
+        const video = panel.querySelector('video');
+        const badge = panel.querySelector('.playback-rate');
         let frameCallback = null;
 
         function update() {
