@@ -577,6 +577,14 @@ body:has(.mr-project) #nb :is(.cell, .rendered) {
   gap: clamp(16px, 2.2vw, 26px);
 }
 
+.mr-project .memory-grid[data-selected-case] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mr-project .memory-grid > [hidden] {
+  display: none;
+}
+
 .mr-project .memory-case {
   min-width: 0;
   display: grid;

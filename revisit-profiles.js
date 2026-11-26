@@ -350,6 +350,39 @@
      4. Deep-Link Scene Parameter (?case=...)
      ======================================================================== */
   const requested = new URLSearchParams(location.search).get("case");
+  const revisits = document.getElementById("revisits");
+  const memoryGrid = revisits?.querySelector(".memory-grid");
+  const memoryOptions = [...document.querySelectorAll('#revisits input[name="mr-memory-case"]')];
+  const memoryCards = [...(memoryGrid?.querySelectorAll(".memory-case[data-case]") ?? [])];
+
+  function selectMemoryCase(id) {
+    memoryGrid.toggleAttribute("data-selected-case", Boolean(id));
+    for (const card of memoryCards) {
+      card.hidden = Boolean(id) && card.dataset.case !== id;
+      if (card.hidden) card.querySelector("video")?.pause();
+    }
+  }
+
+  for (const option of memoryOptions) {
+    option.addEventListener("change", () => {
+      selectMemoryCase(option.value);
+      const url = new URL(location.href);
+      if (option.value) url.searchParams.set("case", option.value);
+      else url.searchParams.delete("case");
+      url.hash = "revisits";
+      history.replaceState(history.state, "", url);
+    });
+  }
+
+  const requestedMemory = memoryOptions.find(option => option.value === requested && option.value);
+  if (requestedMemory) {
+    requestedMemory.checked = true;
+    selectMemoryCase(requestedMemory.value);
+    if (!location.hash || location.hash === "#revisits") {
+      revisits.scrollIntoView({ block: "start" });
+    }
+  }
+
   const radio = [...document.querySelectorAll('input[name="mr-case"]')].find(input => input.value === requested);
   if (radio) {
     radio.checked = true;
