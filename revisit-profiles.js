@@ -351,7 +351,7 @@
      ======================================================================== */
   const requested = new URLSearchParams(location.search).get("case");
   const requestedMemory = [...document.querySelectorAll("#revisits .memory-case[data-case]")]
-    .find(card => card.dataset.case === requested);
+    .find(card => card.dataset.case === requested || card.dataset.caseAlias === requested);
   if (requestedMemory && (!location.hash || location.hash === "#revisits")) {
     const scrollToCase = () => requestAnimationFrame(() => requestAnimationFrame(() => {
       requestedMemory.scrollIntoView({ block: "start", behavior: "instant" });
